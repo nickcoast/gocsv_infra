@@ -38,5 +38,5 @@ vault write database/roles/gocsvdb \
     max_ttl="24h"
 
 # Clean up (for demo purposes; do not do this in production)
-#rm vault_init_output.txt
+rm vault_init_output.txt
 

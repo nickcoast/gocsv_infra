@@ -1,10 +1,10 @@
-storage "file" {
-  path = "/home/nick/vault/data"
+storage "{{ vault_storage_type }}" {
+  path = "{{ vault_data_dir }}"
 }
 
 listener "tcp" {
-  address     = "127.0.0.1:8200"
-  tls_disable = "true"
+  address     = "{{ vault_listener_address }}"
+  tls_disable = "{{ vault_tls_disable }}"
 }
 
 ui = true

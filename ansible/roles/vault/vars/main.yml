@@ -9,12 +9,13 @@ vault_data_dir: "/var/lib/vault/data"
 vault_service_name: "vault"
 
 # Vault listener settings
-vault_listener_address: "0.0.0.0:8200"
+#vault_listener_address: "0.0.0.0:8200"
+vault_listener_address: "127.0.0.1:8200"
 vault_tls_disable: "true"
 
 # Vault storage settings
 vault_storage_type: "file"
 
 # Environment (local or production)
-environment: "local"
+deployment_environment: "local"
 
