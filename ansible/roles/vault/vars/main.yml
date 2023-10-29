@@ -1,0 +1,20 @@
+# vars/main.yml
+
+# General Vault settings
+vault_version: "1.15.0"
+vault_zip: "vault_{{ vault_version }}_linux_amd64.zip"
+vault_download_url: "https://releases.hashicorp.com/vault/{{ vault_version }}/{{ vault_zip }}"
+vault_config_dir: "/etc/vault"
+vault_data_dir: "/var/lib/vault/data"
+vault_service_name: "vault"
+
+# Vault listener settings
+vault_listener_address: "0.0.0.0:8200"
+vault_tls_disable: "true"
+
+# Vault storage settings
+vault_storage_type: "file"
+
+# Environment (local or production)
+environment: "local"
+
