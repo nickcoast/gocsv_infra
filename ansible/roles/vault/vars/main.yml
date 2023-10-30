@@ -11,7 +11,8 @@ vault_service_name: "vault"
 # Vault listener settings
 #vault_listener_address: "0.0.0.0:8200"
 vault_listener_address: "127.0.0.1:8200"
-vault_tls_disable: "true"
+use_tls: true
+#vault_tls_disable: "true"
 
 # Vault storage settings
 vault_storage_type: "file"

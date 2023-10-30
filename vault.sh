@@ -1,19 +1,24 @@
 #!/bin/bash
 
-VAULT_OUTPUT='init_output_vault.txt'
+#vault output
+VO='init_output_vault.txt'
 
 # Initialize Vault (only needed the first time you set up Vault)
-sudo vault operator init > $VAULT_OUTPUT
+#sudo vault operator init > $VO
 
 # Extract the root token and unseal keys (for demo purposes; do not do this in production)
-ROOT_TOKEN=$(grep 'Root Token:' $VAULT_OUTPUT | awk '{print substr($0, index($0,$3))}')
-UNSEAL_KEY=$(grep 'Key 1:' $VAULT_OUTPUT | awk '{print substr($0, index($0,$3))}')
+ROOT_TOKEN=$(grep 'Root Token:' $VO | awk '{print substr($0, index($0,$3))}')
+UNSEAL_KEY1=$(grep 'Unseal Key 1:' $VO | awk '{print substr($0, index($0,$4))}')
+UNSEAL_KEY2=$(grep 'Unseal Key 2:' $VO | awk '{print substr($0, index($0,$4))}')
+UNSEAL_KEY3=$(grep 'Unseal Key 3:' $VO | awk '{print substr($0, index($0,$4))}')
 
 echo $ROOT_TOKEN
-echo $UNSEAL_KEY
+echo $UNSEAL_KEY1
 
 # Unseal Vault (this may need to be done multiple times depending on your threshold setting)
-vault operator unseal $UNSEAL_KEY
+vault operator unseal $UNSEAL_KEY1
+vault operator unseal $UNSEAL_KEY2
+vault operator unseal $UNSEAL_KEY3
 
 # Log in to Vault
 vault login $ROOT_TOKEN
@@ -38,5 +43,5 @@ vault write database/roles/gocsvdb \
     max_ttl="24h"
 
 # Clean up (for demo purposes; do not do this in production)
-rm vault_init_output.txt
+#rm vault_init_output.txt
 
